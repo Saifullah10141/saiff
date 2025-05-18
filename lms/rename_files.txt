@@ -1,0 +1,2 @@
+Get-ChildItem -Recurse -Filter "*.php" | Rename-Item -NewName { $_.Name -replace "\.php$", ".html" }
+dark mode CSS scheme and animation
