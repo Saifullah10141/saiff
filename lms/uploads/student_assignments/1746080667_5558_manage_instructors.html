@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Instructors</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; height: 100vh; background-color: white; font-family: Arial, sans-serif; }
+        .sidebar { width: 250px; background-color: #003366; padding: 20px; display: flex; flex-direction: column; height: 100vh; position: fixed; }
+        .sidebar a { color: white; text-decoration: none; padding: 10px; margin: 10px 0; background-color: #004080; text-align: center; border-radius: 5px; }
+        .sidebar a:hover { background-color: #0066cc; }
+        .content { flex: 1; padding: 20px; margin-left: 250px; }
+        .header { background-color: #2980b9; color: white; padding: 15px; text-align: center; border-radius: 5px; margin-bottom: 20px; }
+        .form-container { background-color: #f4f4f4; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+        label { font-weight: bold; }
+        input, select, button { width: 100%; padding: 8px; margin-top: 5px; font-size: 16px; border-radius: 5px; }
+        button { background-color: #28a745; color: white; cursor: pointer; border: none; margin-top: 10px; }
+        button:hover { background-color: #218838; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #004080; color: white; }
+        .delete-btn { background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+        .delete-btn:hover { background-color: darkred; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage_courses.html">Manage Courses</a>
+        <a href="manage_students.html">Manage Students</a>
+        <a href="manage_instructors.html">Manage Instructors</a>
+        <a href="contact_us.html">Contact Us</a>
+        <a href="logout.html">Logout</a>
+    </div>
+    
+    <div class="content">
+        <div class="header">
+            <h2>Welcome, <span id="username">[Course Coordinator]</span>!</h2>
+        </div>
+
+        <div class="form-container">
+            <h3>Assign Instructor</h3>
+            <label for="course">Select Course:</label>
+            <select id="course">
+                <option value="">Select Course</option>
+                <option value="Math">Math</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+            </select>
+            
+            <label for="instructor_id">Instructor ID:</label>
+            <input type="text" id="instructor_id" placeholder="Enter Instructor ID">
+
+            <button onclick="assignInstructor()">Assign Instructor</button>
+        </div>
+
+        <div class="table-container">
+            <h3>Assigned Instructors</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Instructor Name</th>
+                        <th>Instructor ID</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="instructor-list">
+                    <tr>
+                        <td>John Doe</td>
+                        <td>INS101</td>
+                        <td>Math</td>
+                        <td><button class="delete-btn" onclick="deleteInstructor(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>INS102</td>
+                        <td>Science</td>
+                        <td><button class="delete-btn" onclick="deleteInstructor(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function assignInstructor() {
+            let course = document.getElementById("course").value;
+            let instructorId = document.getElementById("instructor_id").value;
+            if (course && instructorId) {
+                alert("Instructor assigned successfully!");
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+
+        function deleteInstructor(button) {
+            let confirmDelete = confirm("Are you sure you want to remove this instructor?");
+            if (confirmDelete) {
+                let row = button.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                alert("Instructor removed successfully!");
+            }
+        }
+    </script>
+</body>
+</html>

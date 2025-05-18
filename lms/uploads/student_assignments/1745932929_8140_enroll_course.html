@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #003366;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #004080;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #0066cc;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 250px;
+        }
+
+        .header {
+            background-color: #2980b9;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage_courses.html">Manage Courses</a>
+        <a href="manage_students.html">Manage Students</a>
+        <a href="manage_instructors.html">Manage Instructors</a>
+        <a href="contact_us.html">Contact Us</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h2>Welcome, <span id="username">[Course Coordinator]</span>!</h2>
+        </div>
+
+        <div class="form-container">
+            <h3>Enroll New Course</h3>
+            <label for="course_name">Course Name:</label>
+            <input type="text" id="course-name" placeholder="Enter course name" require>
+
+            <label for="course_code">Course Code:</label>
+            <input type="text" id="course-code" placeholder="Enter course code" require>
+
+            <label for="credit-hours-theory">Credit Hours (Theory):</label>
+            <input type="number" id="credit-hours-theory" placeholder="Enter theory credit hours" require>
+            
+            <label for="credit-hours-practical">Credit Hours (Practical):</label>
+            <input type="number" id="credit-hours-practical" placeholder="Enter practical credit hours" require>
+
+            <button onclick="enrollCourse()">Enroll Course</button>
+        </div>
+    </div>
+
+    <script>
+        function enrollCourse() {
+            let courseName = document.getElementById("course-name").value;
+            let courseCode = document.getElementById("course-code").value;
+            let creditTheory = document.getElementById("credit-hours-theory").value;
+            let creditPractical = document.getElementById("credit-hours-practical").value;
+            
+            if (courseName && courseCode && creditTheory && creditPractical) {
+                alert("Course enrolled successfully!");
+                document.location.href = "course_enrolled.html";
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+    </script>
+</body>
+</html>
